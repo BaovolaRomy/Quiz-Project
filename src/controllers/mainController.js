@@ -5,7 +5,10 @@ const mainController = {
   renderHomePage: async(request, response) => {
 
     const quizList = await Quiz.findAll( {
-      include: ["author", "tags"]
+      include: ["author", "tags"],
+      order:[
+        ['title', 'DESC']
+    ]
     });
     console.log(quizList);
     response.render('home', {quizList});

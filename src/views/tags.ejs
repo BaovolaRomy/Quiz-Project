@@ -6,6 +6,7 @@
   <% for(const tag of tagsList){%>
       <div>
           <span class="badge bg-primary p-2 mb-1"><%= tag.name%></span>
+          
           <ul>
             <% for(const quiz of tag.quizzes ){%> 
 
@@ -15,10 +16,10 @@
 
               <%}
               else{%>
-                <p class="ms-2">Aucun quizz dans cette catégorie pour le moment....</p>
+                <p class="ms-2"> Aucun quizz dans cette catégorie pour le moment....</p>
                 <%}%>
               
-            <%}%>
+            <%}%> 
               
           </ul>
         </div>

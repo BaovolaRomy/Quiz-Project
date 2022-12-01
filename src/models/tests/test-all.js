@@ -71,24 +71,24 @@ async function testQuestionAnswer() {
     include: "tags"
   });
  
-  // console.log(result.get(null, { plain: true }));
+  console.log(result.get(null, { plain: true }));
 
 };
 testQuizWithTags() ;
 
-async function testQuizWithQuestionsAndQuestionLevel() {
-  const quizQuestionsList = await Quiz.findByPk(4,{
-    include: ["author",
-      { association: "tags" },
+// async function testQuizWithQuestionsAndQuestionLevel() {
+//   const quizQuestionsList = await Quiz.findByPk(4,{
+//     include: ["author",
+//       { association: "tags" },
       
-      { association: "questions", 
-      include: ["propositions", "level", "good_answer"] }     
-  ]
+//       { association: "questions", 
+//       include: ["propositions", "level", "good_answer"] }     
+//   ]
 
-  });
-   console.log(quizQuestionsList.get(null, { plain: true }));
-  }
-testQuizWithQuestionsAndQuestionLevel()
+//   });
+//    console.log(quizQuestionsList.get(null, { plain: true }));
+//   }
+// testQuizWithQuestionsAndQuestionLevel()
   // console.log(questionWithPropositions.get(null, { plain: true }));
   // console.log(questionWithGoodAnswer.get(null, { plain: true }));
   // console.log(question.get(null, { plain: true }));
