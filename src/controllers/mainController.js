@@ -29,6 +29,20 @@ const mainController = {
       res.status(500).send(`An error occured with the database :\n${error.message}`);
     }
 
-  }
+  },
+
+    tagsPage: async(req,res)=>{
+
+      const tagsList = await Tag.findAll( {
+        include: [
+          { association: "quizzes"} ]
+      })
+      res.render('tags', {tagsList});
+      
+    }
+
+
+
+
 }
-module.exports = mainController;
+module.exports = mainController

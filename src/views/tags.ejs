@@ -1,0 +1,31 @@
+<%- include("partials/header") %>
+
+<main class="container py-4">
+
+  <h1>Thèmes</h1>
+  <% for(const tag of tagsList){%>
+      <div>
+          <span class="badge bg-primary p-2 mb-1"><%= tag.name%></span>
+          <ul>
+            <% for(const quiz of tag.quizzes ){%> 
+
+              <% if(quiz){%>
+
+              <li><a href="/<%= quiz.id%>/questions"><%=quiz.title%></a></li> 
+
+              <%}
+              else{%>
+                <p class="ms-2">Aucun quizz dans cette catégorie pour le moment....</p>
+                <%}%>
+              
+            <%}%>
+              
+          </ul>
+        </div>
+    
+  <%}%>
+  
+
+</main>
+
+<%- include("partials/footer") %>
