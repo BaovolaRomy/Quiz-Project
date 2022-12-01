@@ -77,18 +77,17 @@ async function testQuestionAnswer() {
 testQuizWithTags() ;
 
 async function testQuizWithQuestionsAndQuestionLevel() {
-const quizList = await Quiz.findOne({
+  const quizQuestionsList = await Quiz.findByPk(4,{
+    include: ["author",
+      { association: "tags" },
+      
+      { association: "questions", 
+      include: ["propositions", "level", "good_answer"] }     
+  ]
 
-  include: [
-    "tags",
-    {
-      association: "questions", 
-      include: ["level", "good_answer"]
-    },
-  ],
-});
-console.log(quizList.get(null, { plain: true }));
-};
+  });
+   console.log(quizQuestionsList.get(null, { plain: true }));
+  }
 testQuizWithQuestionsAndQuestionLevel()
   // console.log(questionWithPropositions.get(null, { plain: true }));
   // console.log(questionWithGoodAnswer.get(null, { plain: true }));

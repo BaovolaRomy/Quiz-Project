@@ -1,49 +1,40 @@
 <%- include("partials/header") %>
 
 <main class="container py-4">
-  <% for (const quiz of quizzList){%>
 
-    <% for (const question of quiz.questions) {%>
+    <h1 class="text-center m-2"> <%= questionsList.title %> </h1>
 
-  <h1 class="text-center m-2"> <%= question.title %> </h1>
-
-<h2 class="small text-end"><%= quiz.author.firstname %> <%= quiz.author.lastname %> </h2>
+<h2 class="small text-end"><%= questionsList.author.firstname %> <%= questionsList.author.lastname %> </h2>
 
 
-<h3>Thèmes</h3>
+  <h3>Thèmes</h3>
+  <% for (const tag of questionsList.tags){%>
   <ul class="mb-4 p-0">
-    <li class="badge bg-primary">Astrophysique</li>
-    <li class="badge bg-primary">Chimie</li>
+    <li class="badge bg-primary"><%= tag.name %></li>
   </ul>
+<%}%>
 
 
 <h3>Questions</h3>
 
-  <span class="badge bg-info"><%= question.level %></span>
-  <p class="fw-bold mb-1">Une molécule est constituée</p>
+<% for (const question of questionsList.questions){%>
+
+  <span class="badge bg-info"><%= question.level.name %></span>
+  <p class="fw-bold mb-1"><%= question.description %></p>
   <div class="mb-3 ms-2">
-    <div>
-      <input type="radio" id="#" name="#" value="#">
-      <label for="#">d'atomes</label>
-    </div>
-    <div>
-      <input type="radio" id="#" name="#" value="#">
-      <label for="#">de tommes</label>
-    </div>
-    <div>
-      <input type="radio" id="#" name="#" value="#">
-      <label for="#">d'automne</label>
-    </div>
+
+    <% for (const proposition of question.propositions){%>
+      <div>
+        <input type="radio" id="#" name="#" value="#">
+        <label for="#"><%= proposition.description %></label>
+      </div>
+    <%}%>
   </div>
   <p class="fst-italic text-secondary"><%= question.anecdote %> <%= question.wiki %></p>
 
-
 <button class="d-block mx-auto btn btn-primary mb-4">Envoyer</button>
-
-<%}%>
 <%}%>
 
-  
 </main>
 
 <%- include("partials/footer") %>
