@@ -13,7 +13,7 @@ async function main() {
 
 async function testTag() {
   const tags = await Tag.findAll();
-  console.log(tags);
+  // console.log(tags);
 }
 
 async function testQuestion() {
@@ -21,7 +21,7 @@ async function testQuestion() {
     include: "questions"
   });
 
-  console.log(quizWithQuestions.get(null, { plain: true }));
+  // console.log(quizWithQuestions.get(null, { plain: true }));
 }
 
 async function testLevelWithQuestions() {
@@ -32,7 +32,7 @@ async function testLevelWithQuestions() {
       attributes: ["wiki"]
     }
   });
-  console.log(levelWithQuestion.get(null, { plain: true }));
+  // console.log(levelWithQuestion.get(null, { plain: true }));
 }
 
 async function testQuestionAnswer() {
@@ -65,7 +65,32 @@ async function testQuestionAnswer() {
       }
     ]
   });
-  console.log(questionWithPropositions.get(null, { plain: true }));
-  console.log(questionWithGoodAnswer.get(null, { plain: true }));
-  console.log(question.get(null, { plain: true }));
+
+  async function testQuizWithTags() {
+  const result = await Quiz.findByPk(1, {
+    include: "tags"
+  });
+ 
+  // console.log(result.get(null, { plain: true }));
+
+};
+testQuizWithTags() ;
+
+async function testQuizWithQuestionsAndQuestionLevel() {
+const quizList = await Quiz.findOne({
+
+  include: [
+    "tags",
+    {
+      association: "questions", 
+      include: ["level", "good_answer"]
+    },
+  ],
+});
+console.log(quizList.get(null, { plain: true }));
+};
+testQuizWithQuestionsAndQuestionLevel()
+  // console.log(questionWithPropositions.get(null, { plain: true }));
+  // console.log(questionWithGoodAnswer.get(null, { plain: true }));
+  // console.log(question.get(null, { plain: true }));
 }
